@@ -23,13 +23,14 @@
 		"languages": [
       {
         "id": "factual",
-        "extensions": [".fact"]
+        "extensions": [".fact"],
+				"configuration": "./syntaxes/factual.configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "factual",
-        "scopeName": "source.factual",
+				"scopeName": "source.factual",
         "path": "./syntaxes/factual.tmGrammar.json"
       }
     ]

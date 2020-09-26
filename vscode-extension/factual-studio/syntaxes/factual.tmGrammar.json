@@ -2,17 +2,67 @@
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "Factual",
   "scopeName": "source.factual",
+  "variables": [
+    {}
+  ],
   "patterns": [
-    {
-      "include": "#keywords"
-    }
+    { "include": "#declarations" },
+    { "include": "#keywords" },
+    { "include": "#comments" }
   ],
   "repository": {
+    "declarations": {
+      "patterns": [
+        { "include": "#class-declaration" }
+      ]
+    },
+    "class-declaration": {
+      "name": "meta.fact.factual",
+      "begin": "\\b(fact)\\s+([_[:alpha:]][_[:alnum:]]*)\\s*\\{",
+      "beginCaptures": {
+        "1": { "name": "storage.type.fact.factual" },
+        "2": { "name": "entity.name.type.fact.factual" }
+      },
+      "end": "\\}",
+      "patterns": [
+        { "include": "#keywords" },
+        { "include": "#comments" }
+      ]
+    },
+    "identifier": {
+      "patterns": [
+        {
+          "name": "variable.name.factual",
+          "match": "\\b[_[:alpha:]][_[:alnum:]]*\\b"
+        }
+      ]
+    },
     "keywords": {
       "patterns": [
         {
-          "name":"keyword.control.factual",
-          "match": "\\b(fact|query|string|int|decimal|float|bool)\\b"
+          "name": "storage.type.fact.factual",
+          "match": "\\b(fact)\\b"
+        },
+        {
+          "name": "storage.type.query.factual",
+          "match": "\\b(query)\\b"
+        },
+        {
+          "name": "storage.type.factual",
+          "match": "\\b(string|date|timestamp|int|decimal|float|bool)\\b"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.factual",
+          "match": "//.*"
+        },
+        {
+          "name": "comment.block.factual",
+          "begin": "/\\*",
+          "end": "\\*/"
         }
       ]
     }
