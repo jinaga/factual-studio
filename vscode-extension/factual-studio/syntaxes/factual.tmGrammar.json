@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Factual",
+  "scopeName": "source.factual",
+  "patterns": [
+    {
+      "include": "#keywords"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name":"keyword.control.factual",
+          "match": "\\b(fact|query|string|int|decimal|float|bool)\\b"
+        }
+      ]
+    }
+  }
+}
