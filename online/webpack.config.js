@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MonacoEditorWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 function client() {
   const views = fs.readdirSync(path.resolve(__dirname, "views"))
@@ -42,6 +43,10 @@ function client() {
             test: /\.(scss|css)$/,
 
             use: ['style-loader', 'css-loader', 'sass-loader']
+        },
+        {
+          test: /\.ttf$/,
+          use: ['file-loader']
         }
       ]
     },
@@ -49,7 +54,9 @@ function client() {
       chunks: [name],
       template: `views/${name}.html`,
       filename: `${name}.html`
-    })),
+    })).concat([
+      new MonacoEditorWebpackPlugin()
+    ]),
 
     // Output
     mode: 'production',

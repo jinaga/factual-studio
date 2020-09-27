@@ -20,6 +20,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
+    "monaco-editor": "^0.21.2",
+    "monaco-editor-webpack-plugin": "^2.0.0",
     "webpack-node-externals": "^2.5.2"
   },
   "devDependencies": {
@@ -29,8 +31,10 @@
     "@types/express-session": "^1.17.0",
     "@types/node": "^14.11.2",
     "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.5.0",
     "nodemon": "^2.0.4",
+    "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.4",

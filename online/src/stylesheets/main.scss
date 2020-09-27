@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+.factual-studio-container {
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    .editor {
+        grid-row: 1;
+        grid-column: 1;
+        margin: 5px;
+        overflow: hidden;
+        border:1px solid #ccc;
+
+        #container {
+            height: 100%;
+        }
+    }
+}
