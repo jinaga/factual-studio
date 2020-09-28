@@ -2,6 +2,7 @@ import * as monaco from 'monaco-editor';
 import  { factualLanguageDefinition } from './factual-language-definition';
 // import { FactualCompletionItemProvider } from './factual-completion-item-provider';
 import '../stylesheets/main.scss';
+import { factualLanguageConfiguration } from './factual-language-configuration';
 
 (window as any).MonacoEnvironment = {
   getWorkerUrl: function (moduleId: string, label: string) {
@@ -17,6 +18,8 @@ monaco.languages.setMonarchTokensProvider(
   'factual',
   factualLanguageDefinition
 );
+
+monaco.languages.setLanguageConfiguration("factual", factualLanguageConfiguration);
 
 // monaco.languages.registerCompletionItemProvider(
 //   'factual',

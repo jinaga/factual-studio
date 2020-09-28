@@ -5,6 +5,9 @@ interface MonarchLanguageConfiguration extends languages.IMonarchLanguage {
 }
 
 export const factualLanguageDefinition: MonarchLanguageConfiguration = {
+  brackets: [
+    { open: '{', close: '}', token: 'bracket' }
+  ],
   defaultToken: 'invalid',
   keywords: [
     'fact', 'int',
@@ -18,11 +21,23 @@ export const factualLanguageDefinition: MonarchLanguageConfiguration = {
           '@default': 'identifier'
         }
       }],
+      // punctuation
+      [/[{}]/, '@brackets'],
       // whitespace
       { include: '@whitespace' },
     ],
+
+    comment: [
+      [/[^\/*]+/, 'comment' ],
+      [/\/\*/,    'comment', '@push' ],    // nested comment
+      ["\\*/",    'comment', '@pop'  ],
+      [/[\/*]/,   'comment' ]
+    ],
+
     whitespace: [
-      [/[ \t\r\n]+/, ''],
+      [/[ \t\r\n]+/, 'white'],
+      [/\/\*/,       'comment', '@comment' ],
+      [/\/\/.*$/,    'comment'],
     ]
   }
 };
