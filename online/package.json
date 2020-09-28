@@ -21,7 +21,6 @@
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
     "monaco-editor": "^0.21.2",
-    "monaco-editor-webpack-plugin": "^2.0.0",
     "webpack-node-externals": "^2.5.2"
   },
   "devDependencies": {

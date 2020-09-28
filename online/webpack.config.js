@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MonacoEditorWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 function client() {
   const views = fs.readdirSync(path.resolve(__dirname, "views"))
@@ -46,7 +45,10 @@ function client() {
         },
         {
           test: /\.ttf$/,
-          use: ['file-loader']
+          loader: 'file-loader',
+          options: {
+            outputPath: 'scripts',
+          },
         }
       ]
     },
@@ -54,9 +56,7 @@ function client() {
       chunks: [name],
       template: `views/${name}.html`,
       filename: `${name}.html`
-    })).concat([
-      new MonacoEditorWebpackPlugin()
-    ]),
+    })),
 
     // Output
     mode: 'production',
@@ -110,7 +110,25 @@ const server = {
   externals: [nodeExternals()],
 };
 
+const worker = {
+  // Input
+  entry: {
+    'editor.worker': 'monaco-editor/esm/vs/editor/editor.worker.js'
+  },
+
+  // Processing
+
+  // Output
+  mode: 'production',
+  output: {
+    filename: 'scripts/[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
+};
+
 module.exports = [
   client(),
-  server
+  server,
+  worker
 ];
